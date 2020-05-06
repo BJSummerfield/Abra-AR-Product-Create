@@ -1,0 +1,46 @@
+body{
+  background-color: ;
+  text-align: center;
+  font-family: "Lato","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  margin: 15px;
+}
+
+.text {
+  font-size: 24px;
+}
+
+#continueButton {
+  margin-top: 15px;
+  background-color: #CA002E ;
+  border: 1px solid black;
+  font-size: 16px;
+  padding:14px 40px;
+  border-radius: 15px;
+  color: white;
+
+}
+
+select {
+  margin-top: 15px;
+  font-family: "Lato","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  position: relative;
+  text-align: center;
+  /*width: 150px;*/
+  /*height: 25px;*/
+  font-size: 15px;
+}
+
+img {
+  border: 1px solid black;
+  border-radius: 15px;
+  max-height: 300px;
+  max-width: 300px;
+}
+
+.selectGrid {
+  /*margin-top: 15px;*/
+  display: inline-grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto;
+  grid-column-gap: 35px;
+}

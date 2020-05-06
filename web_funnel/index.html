@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/styles.css">
+    <title>Abrafast - Customizer</title>
+  </head>
+  <body>
+    <h1>Abrafast Anchor Bolt Customizer</h1>
+    <div class="ui-container">
+      <div class="text">
+      </div>
+      <div class="images">
+      </div>
+      <div class="inputs">
+      </div>
+      <button id="continueButton">Continue</button>
+    </div>
+  </body>
+  <form id="product_form" action='http://localhost:4567' method='get'>
+    <input type='hidden' name="type" >
+    <input type='hidden' name="grade" >
+    <input type='hidden' name="finish" >
+    <input type='hidden' name="diameter" >
+    <input type='hidden' name="length" >
+  </form>
+  <script type="module" src="./public/javascript/main.js"></script>
+</html>
