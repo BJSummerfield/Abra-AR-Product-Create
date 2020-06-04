@@ -4,8 +4,15 @@ require './.env.rb'
 
 class ProductWrite
   def self.write(params)
-    port = ssh_into_server #Testing
+    #testing
+    port = ssh_into_server
     client = mysql_connection(port)
+    #testing
+
+    #live
+    # client = mysql_connection
+    #live
+    
     url = get_product(params, client)
     client.close
     return url
@@ -14,10 +21,8 @@ class ProductWrite
   def self.get_product (params, client)
     wp_posts_hash = generate_wp_posts_hash(params)
     if get_id(wp_posts_hash, client) != []
-      p "its in the database"
       return wp_posts_hash['guid']
     else
-      p "creating product"
       create_product(params, wp_posts_hash, client)
       return wp_posts_hash['guid']
     end

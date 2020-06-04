@@ -1,27 +1,32 @@
 class Ui {
-  constructor(text, images, inputs, button, funnel, messages) {
+  constructor(text, images, inputs, button, funnel, messages, form) {
   this.text = text
   this.images = images
   this.inputs = inputs
   this.button = button
   this.funnel = funnel
   this.messages = messages
+  this.form = form
   this.step = 0
   this.flow_step = ['type', 'grade', 'finish', 'diameter', 'length']
   this.runFunnel()
   }
 
   runFunnel() {
+    this.createForm(this.form)
     this.createText(this.messages.welcome, this.text)
     this.generateImage(this.images, 'public/data/images/abrafast.png')
     this.addListeners()
   }
 
-  selectTypes() {
-    this.removeElements()
-    this.createText(this.messages.type, this.text)
-    this.generateInput(this.funnel.variations['types'], this.inputs)
-    this.generateImage(this.images, 'public/data/images/atr.jpg')
+  createForm(form) {
+    this.flow_step.forEach(function(element){
+      var input = document.createElement('input')
+      input.type = 'hidden'
+      input.name = element
+      form.appendChild(input)
+    })
+    form['type'].value = 'all threaded rod'
   }
 
   selectFinish() {
@@ -163,7 +168,7 @@ class Ui {
         item += parseInt(selectOptions[i].value)
       }
     }
-    var input = document.querySelector(`[name=${this.flow_step[this.step - 1]}`)
+    var input = document.querySelector(`[name=${this.flow_step[this.step]}`)
     input.value = item.toString().toLowerCase()
   }
 
@@ -183,8 +188,7 @@ class Ui {
   }
 
   checkMinimumLength() {
-
-    if (this.step == 5 && parseInt(document.querySelector(`[name=length]`).value) < 24) {
+    if (this.step == 4 && parseInt(this.form['length'].value) < 24) {
       this.step = 4
       this.removeChildren(this.button)
       this.selectLength()
@@ -199,22 +203,23 @@ class Ui {
   }
 
   funnelStep() {
-    console.log(this.step)
     if (this.step == 0) {
-        this.selectTypes()}
+      this.selectGrade()
+    }
     if (this.step != 0) {
       this.updateParams()
       this.checkMinimumLength()
       if (this.step == 1) {
-          this.selectGrade()} 
+        this.selectFinish()
+      } 
       if (this.step == 2) {
-          this.selectFinish()}           
+        this.selectDiameter()
+      }           
       if (this.step == 3) {
-          this.selectDiameter()}
+        this.selectLength()
+      }
       if (this.step == 4) {
-          this.selectLength()}
-      if (this.step == 5) {
-        document.querySelector('form').submit()
+        this.form.submit()
       }
     }     
     this.step++

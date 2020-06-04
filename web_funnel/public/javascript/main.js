@@ -1,15 +1,8 @@
-import Variation from '../data/variation.js'
-import Funnel from './models/funnel.js'
-import Messages from './views/messages.js'
-import Ui from './views/ui.js'
+import Allthread from './allthread/allthread.js'
 
-
-const variations = new Variation
-const funnel = new Funnel(variations)
-const messages = new Messages
-var text = document.querySelector('.text')
-var images = document.querySelector('.images')
-var inputs = document.querySelector('.inputs')
-var button = document.getElementById('continueButton')
-const ui = new Ui(text, images, inputs, button, funnel, messages)
-
+const param = new URL(document.location).searchParams.get('type')
+if (param =='atr') {
+  Allthread()
+} else if (param == 'ser') {
+  
+}
