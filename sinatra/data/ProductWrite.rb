@@ -5,12 +5,12 @@ require './.env.rb'
 class ProductWrite
   def self.write(params)
     #testing
-    port = ssh_into_server
-    client = mysql_connection(port)
+    # port = ssh_into_server
+    # client = mysql_connection(port)
     #testing
 
     #live
-    # client = mysql_connection
+    client = mysql_connection
     #live
     
     url = get_product(params, client)
@@ -129,37 +129,37 @@ class ProductWrite
     return hash
   end
 
-  def self.mysql_connection(port)
-    ## found in /etc/mysql/debian.cnf
-    client = Mysql2::Client.new(
-      host: "127.0.0.1",
-      username: USERNAME,
-      password: PASSWORD,
-      database: "wordpress",
-      port: port
-    )
-    return client
-  end
+  # def self.mysql_connection(port)
+  #   ## found in /etc/mysql/debian.cnf
+  #   client = Mysql2::Client.new(
+  #     host: "127.0.0.1",
+  #     username: USERNAME,
+  #     password: PASSWORD,
+  #     database: "wordpress",
+  #     port: port
+  #   )
+  #   return client
+  # end
 
-  def self.ssh_into_server
-    gateway = Net::SSH::Gateway.new(
-      'abrafast.store',
-      'root'
-    )
-    port = gateway.open('127.0.0.1', 3306)
-    return port
-  end
+  # def self.ssh_into_server
+  #   gateway = Net::SSH::Gateway.new(
+  #     'abrafast.store',
+  #     'root'
+  #   )
+  #   port = gateway.open('127.0.0.1', 3306)
+  #   return port
+  # end
 
-    # def self.mysql_connection
-    #   ## found in /etc/mysql/debian.cnf
-    #   client = Mysql2::Client.new(
-    #     host: "127.0.0.1",
-    #     username: USERNAME,
-    #     password: PASSWORD,
-    #     database: "wordpress",
-    #   )
-    #   return client
-    # end
+    def self.mysql_connection
+      ## found in /etc/mysql/debian.cnf
+      client = Mysql2::Client.new(
+        host: "127.0.0.1",
+        username: USERNAME,
+        password: PASSWORD,
+        database: "wordpress",
+      )
+      return client
+    end
 end
 
 

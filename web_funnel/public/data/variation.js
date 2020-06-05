@@ -1,8 +1,8 @@
 class Variation {
   constructor() {
     this.types = [
-      "All Threaded Rod"
-
+      "All Threaded Rod",
+      "Single End Rod"
       ]
 
     this.grades = [
